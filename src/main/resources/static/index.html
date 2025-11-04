@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WeatherMe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script th:inline="javascript">
+        const INITIAL_CITY = /*[[${city}]]*/ 'Astana';
+    </script>
+    <script defer src="/app.js"></script>
+</head>
+<body>
+<header class="top">
+    <div class="brand">
+        <img src="/logo.png" alt="WeatherMe logo" class="brand-logo" />
+        <div class="brand-name">WeatherMe</div>
+    </div>
+
+    <nav class="tabs" aria-label="Views">
+        <a class="active" href="#1" data-view="now">Now</a>
+        <a href="charts.html">Chart</a>
+    </nav>
+
+    <div class="units">
+        <span>°C</span>
+        <label class="switch">
+            <input id="unit" type="checkbox" aria-label="Switch units (°C/°F)">
+            <span class="slider"></span>
+        </label>
+        <span>°F</span>
+        <button id="notifyBtn" class="btn-bell" title="Subscribe to updates">🔔</button>
+    </div>
+</header>
+
+<div id="notifPanel" class="notif-panel" hidden>
+    <div class="notif-head">
+        <strong>Notifications</strong>
+        <button id="notifClose" aria-label="Close">✕</button>
+    </div>
+    <ul id="notifList" class="notif-list"></ul>
+</div>
+
+<main class="wrap">
+    <div class="search">
+        <svg class="search-icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/>
+            <path d="M20 20 L16.65 16.65" stroke="currentColor" stroke-width="2" />
+        </svg>
+        <input id="q" type="text" placeholder="Search location..." autocomplete="off" />
+    </div>
+    <section id="1" class="card current" aria-label="Current weather">
+        <header class="c-head">
+            <div class="c-city">
+                <h1 id="city">—</h1>
+                <div class="c-date" id="date">—</div>
+            </div>
+            <div class="c-icon">
+                <div id="icon" class="icon-box" aria-hidden="true"></div>
+            </div>
+        </header>
+        <div class="c-main">
+            <div class="c-thermo" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M14 14.76V5a4 4 0 10-8 0v9.76a5 5 0 108 0z"
+                          fill="none" stroke="currentColor" stroke-width="2" />
+                    <circle cx="10" cy="17" r="3" fill="currentColor"/>
+                </svg>
+            </div>
+            <div class="c-temp" id="temp">—</div>
+            <div class="c-clouds" aria-hidden="true">
+                <img src="/cloud.png" alt="Cloud" class="c-cloud-icon">
+            </div>
+        </div>
+
+        <div class="c-meta">
+            <div class="m-col">
+                <div class="m-item"><span>Humidity</span><strong id="humidity">—</strong></div>
+                <div class="m-item"><span>Feels like</span><strong id="feels">—</strong></div>
+            </div>
+            <div class="m-col">
+                <div class="m-item"><span>Air Pressure</span><strong id="pressure">—</strong></div>
+                <div class="m-item"><span>Wind</span><strong id="wind">—</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hourly1" class="hourly" aria-label="Hourly forecast">
+        <div class="forecast-head">
+            <span class="forecast-title">Hourly forecast</span>
+            <span class="forecast-sub">Air temperature • Wind, m/s</span>
+        </div>
+        <div class="h-scroll" id="hourly" role="list">
+            <div class="h-card" style="opacity:.7">Loading…</div>
+        </div>
+    </section>
+
+    <section id="hourly2" class="weekly" aria-label="7-day forecast">
+        <div class="forecast-head">
+            <span class="forecast-title">Weekly forecast</span>
+            <span class="forecast-sub">Air temperature • Wind, m/s</span>
+        </div>
+
+        <div id="weekly" class="w-scroll" role="list">
+            <div class="w-card" style="opacity:.7">No weekly data</div>
+        </div>
+    </section>
+</main>
+<footer class="foot">© WeatherMe</footer>
+</body>
+</html>

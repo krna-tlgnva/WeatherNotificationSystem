@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Charts – WeatherMe</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/charts.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="/charts.js"></script>
+</head>
+<body>
+<header class="top">
+    <div class="brand">
+        <img src="/logo.png" alt="WeatherMe logo" class="brand-logo" />
+        <div class="brand-name">WeatherMe</div>
+    </div>
+
+    <nav class="tabs" aria-label="Views">
+        <a href="index.html">Now</a>
+        <a class="active" href="#">Charts</a>
+    </nav>
+</header>
+
+<main class="wrap">
+    <div class="search">
+        <svg class="search-icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/>
+            <path d="M20 20 L16.65 16.65" stroke="currentColor" stroke-width="2" />
+        </svg>
+        <input id="q" type="text" placeholder="Search location..." autocomplete="off" />
+    </div>
+
+    <section class="charts card">
+        <div class="section-head">
+            <h2 class="section-title">Temperature</h2>
+            <small class="muted">Average for 7 days</small>
+        </div>
+        <canvas id="chartTemp"></canvas>
+    </section>
+
+    <section class="charts card">
+        <div class="section-head">
+            <h2 class="section-title">Wind Speed</h2>
+            <small class="muted">Average for 7 days</small>
+        </div>
+        <canvas id="chartWind"></canvas>
+    </section>
+</main>
+
+<footer class="foot">© WeatherMe</footer>
+</body>
+</html>

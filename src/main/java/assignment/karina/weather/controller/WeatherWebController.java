@@ -13,9 +13,9 @@ import java.util.Map;
 public class WeatherWebController {
 
     private final WeatherFacade weatherService;
-    private final CityChangeService cityChangeService;
+    private final CityChange cityChangeService;
 
-    public WeatherWebController(WeatherFacade weatherService, CityChangeService cityChangeService) {
+    public WeatherWebController(WeatherFacade weatherService, CityChange cityChangeService) {
         this.weatherService = weatherService;
         this.cityChangeService = cityChangeService;
     }
@@ -46,6 +46,6 @@ public class WeatherWebController {
     @ResponseBody
     @GetMapping("/api/observer/inbox")
     public ResponseEntity<List<Map<String, Object>>> inbox(@RequestParam long userId) {
-        return ResponseEntity.ok(InboxObserver.inbox(userId));
+        return ResponseEntity.ok(ForecastObserver.inbox(userId));
     }
 }

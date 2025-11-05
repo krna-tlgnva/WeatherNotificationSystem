@@ -4,13 +4,16 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ForecastSubject {
-    private final ConcurrentHashMap<Long, ForecastObserver> observers = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<Long, Observer> observers = new ConcurrentHashMap<>();
 
-    public void subscribe(long userId, ForecastObserver o){ observers.put(userId, o); }
-    public void unsubscribe(long userId){ observers.remove(userId); }
+    public void subscribe(long userId, Observer observer) {
+        observers.put(userId, observer);
+    }
 
-    public void notifyOne(long userId, String city, Map<String,Object> data) {
-        var o = observers.get(userId);
-        if (o != null) o.onForecast(city, data);
+    public void notify(long userId, String city, Map<String, Object> data) {
+        Observer observer = observers.get(userId);
+        if (observer != null) {
+            observer.onForecast(city, data);
+        }
     }
 }

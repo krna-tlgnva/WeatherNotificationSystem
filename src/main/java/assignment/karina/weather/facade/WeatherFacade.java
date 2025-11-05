@@ -25,9 +25,9 @@ public class WeatherFacade {
     }
 
     public Map<String, Object> forecast(String city) {
-        var current = openWeather.fetch(city);
-        var hourly  = wbHourly.fetch(city);
-        var weekly  = wbWeekly.fetch(city);
+        Map<String, Object> current = (Map<String, Object>) openWeather.fetch(city);
+        Map<String, Object> hourly  = (Map<String, Object>) wbHourly.fetch(city);
+        Map<String, Object> weekly  = (Map<String, Object>) wbWeekly.fetch(city);
 
         return Map.of(
                 "current", current,
